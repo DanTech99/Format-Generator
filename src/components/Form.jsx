@@ -4,6 +4,10 @@ import Docxtemplater from "docxtemplater";
 import PizZip from "pizzip";
 import PizZipUtils from 'pizzip/utils/index.js';
 
+
+function loadFile(url, callback) {
+  PizZipUtils.getBinaryContent(url, callback)
+}
 function Form() {
 
   // mantener el input de date actualizado con la fecha actual
@@ -46,25 +50,35 @@ function Form() {
   // funcion para generar un documento word con los datos del formulario
   const generateWord = () => {
     // cargar la plantilla de word ya construida
+    loadFile('https://github.com/DandevMS/file/blob/main/formato-control.docx',
+    function (error, content) {
+      if (error) {
+        throw error;
+      }
 
+      const zip = new PizZip(content)
+      const doc = new Docxtemplater(zip, {
+        paragraphLoop: true,
+        linebreaks: true,
+      });
 
     // objeto para remplazar en la plantilla
     const dataWord = {
       datosTabla: datos.map((dato) => [dato.getDate, dato.getTipo, dato.getFirstFlo, dato.getFinishFlo, dato.getObservaciones]),
     };
 
-    // crear el documento word a partir de la plantilla y los datos
-    const doc = new Docxtemplater();
-    doc.loadZip(new JSZip(template));
-    doc.setData(dataWord);
-    doc.render();
+      doc.setData(dataWord);
+      doc.render();
+      const blob =  doc.getZip().generate({
+        type: 'blob',
+        mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      });
 
-    console.log(dataWord)
-
-    // descargar el documento generado
-    const blob =  doc.getZip().generate({type: 'blob'});
-    saveAs(blob, "miDocumento.docx");
-  }
+      // guardar y descargar el documento generado
+      saveAs(blob, "output.docx");
+      console.log(dataWord)
+    });  
+  };
 
 
   return (
@@ -98,6 +112,8 @@ function Form() {
          {/* Mostrar los datos almacenados en el estado */}
       <pre>{JSON.stringify(datos, null, 2)}</pre>
       </form>
+
+      <button type="button" onClick={generateWord}>Generate file.docx</button>
     </>
   )
 }
