@@ -25,59 +25,59 @@ function Form() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    const formData = new FormData(event.target);
     // obtener los datos del formulario
-    const getDate = event.target.elements.date.value;
-    const getTipo = event.target.elements.tipo.value;
-    const getFirstFlo = event.target.elements.firstFlo.value;
-    const getFinishFlo = event.target.elements.finishFlo.value;
-    const getObservaciones =  event.target.elements.observaciones.value;
+    const getDate = formData.get('date');
+    const getTipo = formData.get('tipo');
+    const getFirstFlo = formData.get('firstFlo');
+    const getFinishFlo = formData.get('finishFlo');
+    const getObservaciones =  formData.get('observaciones');
 
     // crear un objeto con los datos del formulario
-    const dataObjet = {getDate, getTipo, getFirstFlo, getFinishFlo, getObservaciones};
-
-    // crear un objeto copiando todos los datos del formulario y volviendole a pasar el objeto
-    const newData = [...datos, dataObjet];
+    const data = {getDate, getTipo, getFirstFlo, getFinishFlo, getObservaciones};
 
     // cambiar el estado del objeto
-    setDatos(newData);
-
-    console.log(newData);
+    setDatos(prevData => [...prevData, data]);
 
     // reiniciar el formulario
-    event.target.reset();
+    e.target.value = null
   }
 
   // funcion para generar un documento word con los datos del formulario
   const generateWord = () => {
     // cargar la plantilla de word ya construida
-    loadFile('https://github.com/DandevMS/file/blob/main/formato-control.docx',
+    try {
+      loadFile('http://localhost:3001/file',
     function (error, content) {
       if (error) {
         throw error;
       }
 
-      const zip = new PizZip(content)
-      const doc = new Docxtemplater(zip, {
+      var zip = new PizZip(content)
+      var doc = new Docxtemplater(zip, {
         paragraphLoop: true,
         linebreaks: true,
-      });
+      }); 
 
     // objeto para remplazar en la plantilla
     const dataWord = {
       datosTabla: datos.map((dato) => [dato.getDate, dato.getTipo, dato.getFirstFlo, dato.getFinishFlo, dato.getObservaciones]),
     };
 
-      doc.setData(dataWord);
-      doc.render();
-      const blob =  doc.getZip().generate({
+      // doc.setData(dataWord);
+      doc.render(dataWord);
+      var blob =  doc.getZip().generate({
         type: 'blob',
         mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       });
 
       // guardar y descargar el documento generado
       saveAs(blob, "output.docx");
-      console.log(dataWord)
     });  
+    } catch (error) {
+      console.error('este es el error' + error)
+    }
+    
   };
 
 
@@ -86,7 +86,7 @@ function Form() {
       <form  className="container w-75 border p-5" onSubmit={handleFormSubmit}>
         <div className="mb-3">
           <label htmlFor="fecha" className="form-label">Fecha de ingreso (dd/mmm/aaaa)</label>
-          <input type="date" className="form-control" id="fecha" value={fechaActual} name="date" />
+          <input type="date" className="form-control" id="fecha" defaultValue={fechaActual} name="date" />
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">Tipo documental</label>
@@ -107,14 +107,15 @@ function Form() {
 
         <div className="mb-3 mt-4 d-flex justify-content-center">
           <button type="submit" className="btn btn-primary mb-3">Guardar</button>
+         
         </div>
 
          {/* Mostrar los datos almacenados en el estado */}
       <pre>{JSON.stringify(datos, null, 2)}</pre>
       </form>
+      <button type="button" className="btn btn-secondary mb-3 ms-2" onClick={generateWord}>Generate file.docx</button>
+      </>
 
-      <button type="button" onClick={generateWord}>Generate file.docx</button>
-    </>
   )
 }
 
