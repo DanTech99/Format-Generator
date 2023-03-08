@@ -19,6 +19,14 @@ export default function FormDatePdf() {
 
     const datos = {date, tipo, firstFlo, finishFlo, observaciones};
 
+    function saveData(datos, e) {
+      e.preventDefault()
+      const [listData, setListData] = useState([])
+      setListData([...listData, datos])
+      console.log(datos)
+    };
+    
+
     const handleSubmit = async (e) => {
       e.preventDefault();
 
@@ -72,12 +80,16 @@ export default function FormDatePdf() {
             </div>
 
             <div className="mb-3 mt-4 d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary mb-3">Guardar</button>
+              <button type="submit" className="btn btn-primary mb-3">Generar pdf</button>
             </div>
+            
 
             {/* Mostrar los datos almacenados en el estado */}
-          {/* <pre>{JSON.stringify(datos, null, 2)}</pre>  */}
+          {/* <pre>{JSON.stringify(datos, null, 2)}</pre> */}
           </form>
+          <div className="mb-3 mt-4 d-flex justify-content-center">
+              <button type="submit" className="btn btn-primary mb-3" onChange={saveData}>Guardar</button>
+            </div>
         </div>
         <div class="col-6">
         <div class="table-responsive">
