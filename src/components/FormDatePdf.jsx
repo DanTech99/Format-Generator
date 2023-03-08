@@ -89,7 +89,7 @@ export default function FormDatePdf() {
               <th scope="col">Tipo de proceso</th>
               <th scope="col">numero de folio que inicia</th>
               <th scope="col">numero de folio que finaliza</th>
-              <th scope="col">observaciones</th>x
+              <th scope="col">observaciones</th>
             </tr>
           </thead>
           <tbody>
