@@ -1,19 +1,15 @@
 
 import './App.css'
 import HeaderNav from './components/HeaderNav'
-import Form from './components/Form'
-import { Test } from './components/Test'
+import FormDatePdf from './components/FormDatePdf'
 
 function App() {
 
   return (
     <>
     <HeaderNav />
-    <main className='container-flui p-4 mx-auto'>
-      <div className="container">
-        {/* <Form /> */}
-        <Test />
-      </div>
+    <main className='container-fluid p-4 mx-auto'>
+        <FormDatePdf />
     </main>
     </>
     
