@@ -11,17 +11,16 @@ export default function FormDatePdf() {
     })
 
     const [data, setData] = useState([])
-    // funcion para ir guardando los datos del formulario en un array de objetos
+
     const handleInputChange = (e) => {
       e.preventDefault()
-
       const { name, value } = e.target;
       setDatos({
         ...datos,
         [name] : value
       })
     }
-
+    // funcion para ir guardando los datos del formulario en un array de objetos
     const saveData = (e) => {
       e.preventDefault();
       setData(data => [...data, datos])
@@ -34,10 +33,11 @@ export default function FormDatePdf() {
       });
     
     }
+    console.log(data)
     // funcion para tomar los datos del formulario y enviarlos al servidor, el cual respondara enviando un pdf con la plantilla y los datos suministrados
     const handleSubmit = async (e) => {
       e.preventDefault()
-       const response = await fetch('http://localhost:3000/generatepdf', {
+       const response = await fetch('http://localhost:3000/generatecontrolpdf', {
          method: 'POST',
          headers: {'Content-Type': 'application/json'},
          body: JSON.stringify(data)
@@ -54,6 +54,10 @@ export default function FormDatePdf() {
         document.body.removeChild(link)
        }
     }
+
+    // const deleteItem = (key) => {
+    //   setData(data.filter((dato) => dato.index !== key ))
+    // }
     
   return (
     <>
@@ -106,9 +110,10 @@ export default function FormDatePdf() {
               <td>{index}</td>
               <td>{dato.fecha}</td>
               <td>{dato.tipo}</td>
-              <td>{dato.firstFlo}</td>
+              <td>{dato.firstFlo}</td>  
               <td>{dato.finishFlo}</td>
               <td>{dato.observaciones}</td>
+              <button type="button" className="btn bg-danger btn-sm " onClick={() => deleteItem(index)}>Eliminar</button>
             </tr>
               ))}
           </tbody>
