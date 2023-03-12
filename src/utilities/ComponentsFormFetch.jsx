@@ -77,3 +77,9 @@ const Formulario = () => {
     </form>
   );
 }
+       //mantener el input de date actualizado con la fecha actual
+      //  const [fechaActual, setFechaActual] = useState('');
+      //  useEffect(() => {
+      //    const fecha = new Date().toISOString().substr(0, 10);
+      //    setFechaActual(fecha)
+      //  }, [])

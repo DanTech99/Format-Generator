@@ -2,13 +2,6 @@
 import { useState, useEffect } from "react"
 
 export default function FormDatePdf() {
-
-       //mantener el input de date actualizado con la fecha actual
-      //  const [fechaActual, setFechaActual] = useState('');
-      //  useEffect(() => {
-      //    const fecha = new Date().toISOString().substr(0, 10);
-      //    setFechaActual(fecha)
-      //  }, [])
     const [datos, setDatos] = useState({
       fecha: '',
       tipo: '',
@@ -18,7 +11,6 @@ export default function FormDatePdf() {
     })
 
     const [data, setData] = useState([])
-
     // funcion para ir guardando los datos del formulario en un array de objetos
     const handleInputChange = (e) => {
       e.preventDefault()
@@ -42,16 +34,10 @@ export default function FormDatePdf() {
       });
     
     }
-    useEffect(() => {
-      console.log(data);
-    }, [data]);
-    
-    
-
     // funcion para tomar los datos del formulario y enviarlos al servidor, el cual respondara enviando un pdf con la plantilla y los datos suministrados
     const handleSubmit = async (e) => {
       e.preventDefault()
-       const response = await fetch('http://localhost:3000/formulario', {
+       const response = await fetch('http://localhost:3000/generatepdf', {
          method: 'POST',
          headers: {'Content-Type': 'application/json'},
          body: JSON.stringify(data)
@@ -106,6 +92,7 @@ export default function FormDatePdf() {
         <table className="table">
           <thead>
             <tr>
+            <th scope="col">item</th>
               <th scope="col">fecha</th>
               <th scope="col">Tipo de proceso</th>
               <th scope="col">numero de folio que inicia</th>
@@ -116,6 +103,7 @@ export default function FormDatePdf() {
           <tbody>
             {data.map((dato, index) => (
             <tr key={index}>
+              <td>{index}</td>
               <td>{dato.fecha}</td>
               <td>{dato.tipo}</td>
               <td>{dato.firstFlo}</td>
