@@ -1,4 +1,4 @@
-import PreselectionDemo from "./SwitchBtnMode"
+
 
 function HeaderNav() {
   return (
@@ -7,8 +7,8 @@ function HeaderNav() {
         <div className="text-white text-2xl">
           <a href="" className="">Gestion Documental | Generador de hojas de control</a>
         </div>
-        <div className="text-white items-center content-center">
-            <PreselectionDemo/>
+        <div className="text-white flex items-center content-center">
+            <a href="">Gesccol E.I.C.E</a>
         </div>
       </nav>
         

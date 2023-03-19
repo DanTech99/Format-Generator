@@ -1,7 +1,11 @@
 
 import { useState } from "react"
+import TableListDate from "./TableListDate"
+
 
 export default function FormDatePdf() {
+
+  // estado para recoger los datos del formulario
     const [datos, setDatos] = useState({
       fecha: '',
       tipo: '',
@@ -10,6 +14,7 @@ export default function FormDatePdf() {
       observaciones: '',
     })
 
+    // estado con un array vacio para gurdar los datos del formulario
     const [data, setData] = useState([])
 
     const handleInputChange = (e) => {
@@ -53,11 +58,6 @@ export default function FormDatePdf() {
         document.body.removeChild(link)
        }
     }
-
-    // const deleteItem = (key) => {
-    //   setData(data.filter((dato) => dato.index !== key ))
-    // }
-    
   return (
     <>
     <div className="container text-center">
@@ -86,37 +86,13 @@ export default function FormDatePdf() {
             </div>
 
             <div className="mb-3 mt-4 d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary mb-3" onClick={saveData}>guardar</button>
+              <button type="submit" className="btn" onClick={saveData}>guardar</button>
             </div>
           </form>
         </div>
         <div className="container p-3">
-          <table className="md:table-fixed  border-collapse border border-slate-500">
-            <thead>
-              <tr className="bg-blue-500 text-white">
-                <th className="border border-slate-600 p-2">item</th>
-                <th className="border border-slate-600 p-2">fecha</th>
-                <th className="border border-slate-600 p-2">Tipo de proceso</th>
-                <th className="border border-slate-600 p-2">numero de folio que inicia</th>
-                <th className="border border-slate-600 p-2">numero de folio que finaliza</th>
-                <th className="border border-slate-600 p-2">observaciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((dato, index) => (
-              <tr key={index}>
-                <td className="border border-slate-700 p-2">{index}</td>
-                <td className="border border-slate-700 p-2">{dato.fecha}</td>
-                <td className="border border-slate-700 p-2">{dato.tipo}</td>
-                <td className="border border-slate-700 p-2">{dato.firstFlo}</td>  
-                <td className="border border-slate-700 p-2">{dato.finishFlo}</td>
-                <td className="border border-slate-700 p-2">{dato.observaciones}</td>
-                {/* <button type="button" className="btn bg-danger btn-sm " onClick={() => deleteItem(index)}>Eliminar</button> */}
-              </tr>
-                ))}
-            </tbody>
-          </table>
-          <button type="submit" className="btn btn-primary btn-sm" onClick={handleSubmit}>Generar pdf</button>
+          <TableListDate datos={data} />
+          <button type="submit" className="btn" onClick={handleSubmit}>Generar pdf</button>
         </div>
         </div>
       </div>

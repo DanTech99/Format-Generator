@@ -8,7 +8,7 @@ function App() {
   return (
     <>
     <HeaderNav />
-    <main className='container-fluid p-4 mx-auto'>
+    <main className='container p-4 mx-auto'>
         <FormDatePdf />
     </main>
     </>
