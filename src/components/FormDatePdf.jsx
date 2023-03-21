@@ -7,6 +7,7 @@ export default function FormDatePdf() {
 
   // estado para recoger los datos del formulario
     const [datos, setDatos] = useState({
+      fechaInit: '',
       fecha: '',
       tipo: '',
       firstFlo: '',
@@ -29,7 +30,9 @@ export default function FormDatePdf() {
     const saveData = (e) => {
       e.preventDefault();
       setData(data => [...data, datos])
+      // reiniciar el formulario
       setDatos({
+      fechaInit: '',
       fecha: '',
       tipo: '',
       firstFlo: '',
@@ -63,13 +66,19 @@ export default function FormDatePdf() {
     <div className="container text-center">
       <div className="grid md:grid-cols-2 grid-cols-1">
         <div className="container">
+          {/* formulario  */}
           <form  className="container w-75 border p-5">
+          <div className="mb-3 flex flex-col">
+              <label htmlFor="fecha" className="form-label">Fecha de apertura hoja de control (dd/mmm/aaaa)</label>
+              <small>en este campo se colocar la fecha en que se diligencia la hoja de control</small>
+              <input type="date" className="form-input px-4 py-3 rounded-lg" id="fechaInit" value={datos.fechaInit} name="fechaInit" onChange={handleInputChange}  />
+            </div>
             <div className="mb-3 flex flex-col">
               <label htmlFor="fecha" className="form-label">Fecha de ingreso (dd/mmm/aaaa)</label>
               <input type="date" className="form-input px-4 py-3 rounded-lg" id="fecha" value={datos.fecha} name="fecha" onChange={handleInputChange}  />
             </div>
             <div className="mb-3 flex flex-col">
-              <label htmlFor="exampleFormControlInput1" className="form-label" >Tipo documental</label>
+              <label htmlFor="exampleFormControlInput1" className="form-label" >Nombre Folio</label>
               <input type="text" className="form-input px-4 py-3 rounded-lg" id="exampleFormControlInput1" placeholder="eje: Solicitud" name="tipo" onChange={handleInputChange} value={datos.tipo} />
             </div>
             <div className="mb-3 flex flex-col">
@@ -92,10 +101,10 @@ export default function FormDatePdf() {
         </div>
         <div className="container p-3">
           <TableListDate datos={data} />
-          <button type="submit" className="btn" onClick={handleSubmit}>Generar pdf</button>
-        </div>
+          <button type="submit" className="btn " onClick={handleSubmit}>Generar pdf</button>
         </div>
       </div>
+    </div>
     </>
   )
 }
