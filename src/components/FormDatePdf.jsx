@@ -7,7 +7,7 @@ export default function FormDatePdf({handleInputChange, datos, campoLleno, campo
   // funcion para tomar los datos del formulario y enviarlos al servidor, el cual respondara enviando un pdf con la plantilla y los datos suministrados
   const handleSubmit = async (e) => {
     e.preventDefault()
-     const response = await fetch('https://server-generate-pdf-production.up.railway.app/generatecontrolpdf', {
+     const response = await fetch('https://server-generate.up.railway.app/generatecontrolpdf', {
        method: 'POST',
        headers: {'Content-Type': 'application/json'},
        body: JSON.stringify(data)
