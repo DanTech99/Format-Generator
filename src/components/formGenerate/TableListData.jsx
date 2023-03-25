@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-function TableListDate({datos, eliminarRegistro, editar, handleSubmit}) {
+function TableListData({datos, eliminarRegistro, editar, handleSubmit}) {
 
 /*   const data = JSON.parse(localStorage.getItem('myarray'));
   console.log(data)
@@ -60,4 +60,4 @@ function TableListDate({datos, eliminarRegistro, editar, handleSubmit}) {
   )
 }
 
-export default TableListDate
+export default TableListData
