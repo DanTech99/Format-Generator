@@ -1,16 +1,12 @@
 import React from 'react'
 
+
 export default function Form({modoEdicion, handleInputChange, datos, campoLleno, saveData, campoLlenoTwo, clearForm }) {
   return (
     <>
    {/* formulario  */}
    <h2>{modoEdicion ? 'editar registro' : 'agregar registro'}</h2>
    <form  className="container w-75 border p-5">
-     <div className="mb-3 flex flex-col">
-       <label htmlFor="fecha" className="form-label">Fecha de apertura hoja de control (dd/mmm/aaaa)</label>
-       <small>en este campo se colocar la fecha en que se diligencia la hoja de control</small>
-       <input type="date" className={campoLleno ? "read-only:bg-gray-400 form-input px-4 py-3 rounded-lg": "form-input px-4 py-3 rounded-lg"} id="fechaInit" value={datos.fechaInit = fechaActual} name="fechaInit" onChange={handleInputChange} disabled={campoLleno}  />
-     </div> 
      <div className="mb-3 flex flex-col">
        <label htmlFor="radicado" className="form-label">Numero de Radicado</label>
        <input type="number" className={campoLlenoTwo ? "read-only:bg-gray-400 form-input px-4 py-3 rounded-lg": "form-input px-4 py-3 rounded-lg"} id="fechaInit" value={datos.radicado} name="radicado" onChange={handleInputChange} disabled={campoLlenoTwo}  />
@@ -36,8 +32,8 @@ export default function Form({modoEdicion, handleInputChange, datos, campoLleno,
          <textarea className="form-input px-4 py-3 rounded-lg" id="exampleFormControlTextarea1" rows="3" placeholder="ejem: solicitud cambio de propietario" name="observaciones" onChange={handleInputChange} value={datos.observaciones}></textarea>
      </div>
 
-     <div className="mb-3 mt-4 d-flex justify-content-center">
-       <button type="submit" className="btn" onClick={saveData}>{modoEdicion ? 'editar' : 'guardar'}</button>
+     <div className="mb-3 mt-4 flex  justify-content-center">
+       <button type="submit" className="btn" onClick={saveData}>{modoEdicion ? 'Actualizar' : 'guardar'}</button>
        <button type="submit" className="btn bg-red-500 hover:bg-red-400" onClick={clearForm}>Limpiar</button>
 
      </div>

@@ -11,6 +11,7 @@ export default function GeneratePdf() {
    */
   const [lastId, setLastId] = useState(0);
 
+
   /**
    * hooks para los datos guardados en el array de objetos que se enviara al servidor
    * @type {Array}
@@ -40,7 +41,6 @@ export default function GeneratePdf() {
    * @type {object}
    */
   const [datos, setDatos] = useState({
-      /* fechaInit:'', */
       radicado: '',
       fecha: '',
       tipo: '',
@@ -48,6 +48,7 @@ export default function GeneratePdf() {
       finishFlo: '',
       observaciones: '',
   })
+
 
   /**
    * ---------------------------------------------------
@@ -96,6 +97,7 @@ export default function GeneratePdf() {
     e.preventDefault();
 
     if (modoEdicion) {
+      console.log(modoEdicion)
       const newData = {
         id: datos.id,
         fechaInit: datos.fechaInit,
@@ -109,9 +111,11 @@ export default function GeneratePdf() {
 
     const newDataArray = data.map((item) => item.id === datos.id ? newData : item)
 
-    setDatos(newDataArray)
+    setData(newDataArray)
+    console.log(newDataArray)
     setModoEdicion(false)
     }else {
+
   
     // Incrementar el valor del último ID utilizado y asignarlo como el ID del nuevo objeto
     const newId = lastId + 1;
@@ -125,10 +129,10 @@ export default function GeneratePdf() {
     
     // actualizar el array data para guardar el nuevo objeto
     setData(data => [...data, newData,])
+    console.log(data)
   }
-  // limpiar los campos del formularioa
+  // limpiar los campos del formulario
     setDatos({
-    fechaInit: '',
     radicado : '',
     fecha: '',
     tipo: '',
@@ -150,7 +154,6 @@ export default function GeneratePdf() {
   const clearForm = (e) => {
   e.preventDefault()
   setDatos({
-    fechaInit: '',
     radicado : '',
     fecha: '',
     tipo: '',
