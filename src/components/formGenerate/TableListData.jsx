@@ -5,15 +5,6 @@ import React from 'react'
 
 function TableListData({datos, eliminarRegistro, editar, handleSubmit}) {
 
-/*   const data = JSON.parse(localStorage.getItem('myarray'));
-  console.log(data)
-
-  if (!Array.isArray(data)) {
-    return <p>No hay datos almacenados.</p>;
-  }
- */
-  
-
   return (
     <>
     <table className="md:table-fixed  border-collapse border border-slate-500 text-xs">
