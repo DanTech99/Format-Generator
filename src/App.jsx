@@ -1,20 +1,20 @@
 
 import './App.css'
-import HeaderNav from './layouts/HeaderNav';
+import HomePage from './pages/HomePage';
+import GeneratePdfPage from './pages/GeneratePdfPage';
 import GeneratePdf from './components/formGenerate/GeneratePdf';
+import { BrowserRouter, Route,Routes } from 'react-router-dom'
 
 
 function App() {
    
   return (
-    <>
-    <HeaderNav />
-    <main className='container p-4 mx-auto'>
-        <GeneratePdf />
-    </main>
-    </>
-    
-     
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/generatepdf' element={<GeneratePdfPage />} />
+      </Routes>         
+   </BrowserRouter> 
   )
 }
 
