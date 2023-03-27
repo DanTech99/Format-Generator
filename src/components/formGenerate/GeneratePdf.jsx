@@ -191,6 +191,10 @@ export default function GeneratePdf() {
     // Cambiar el estado modoEdicion a true
     setModoEdicion(true);
   }
+
+  const limpiarDatos = () => {
+    setData([]);
+  };
  
 
   /**
@@ -231,7 +235,7 @@ export default function GeneratePdf() {
         </div>
         
         <div className="container p-3">
-          <TableListDate datos={data} eliminarRegistro={eliminarRegistro} editar={editarRegistro} handleSubmit={handleSubmit} />
+          <TableListDate datos={data} eliminarRegistro={eliminarRegistro} editar={editarRegistro} handleSubmit={handleSubmit} limpiarDatos={limpiarDatos} />
         </div>
       </div>
     </div>

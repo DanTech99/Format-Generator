@@ -1,9 +1,9 @@
 
-import React from 'react'
+import {React, useState} from 'react'
 
 
 
-function TableListData({datos, eliminarRegistro, editar, handleSubmit}) {
+function TableListData({datos, eliminarRegistro, editar, limpiarDatos, handleSubmit}) {
 
   return (
     <>
@@ -47,6 +47,8 @@ function TableListData({datos, eliminarRegistro, editar, handleSubmit}) {
         </tbody>
     </table>
     <button type="submit" className="btn " onClick={handleSubmit}>Generar pdf</button>
+    <button type="submit" className="btn bg-red-500 " onClick={limpiarDatos}>Limpiar Tabla</button>
+
     </>
   )
 }
