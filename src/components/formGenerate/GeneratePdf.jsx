@@ -161,7 +161,7 @@ export default function GeneratePdf() {
     finishFlo: '',
     observaciones: '',
     });
-    setCampoLleno(false)
+    setCampoLlenoTwo(false)
   }
      
   /**
@@ -175,6 +175,7 @@ export default function GeneratePdf() {
   const eliminarRegistro = id => {
     const filtro = data.filter(item => item.id !== id)
     setData(filtro)
+    
   }
 
   /**
