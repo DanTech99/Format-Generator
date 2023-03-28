@@ -10,7 +10,7 @@ export default function GeneratePdf() {
    * @type {number}
    */
   const [lastId, setLastId] = useState(0);
-
+  const [initialLastId, setInitialLastId] = useState(0);
 
   /**
    * hooks para los datos guardados en el array de objetos que se enviara al servidor
@@ -195,6 +195,7 @@ export default function GeneratePdf() {
 
   const limpiarDatos = () => {
     setData([]);
+    setLastId(initialLastId);
   };
  
 
