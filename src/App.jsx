@@ -2,8 +2,9 @@
 import './App.css'
 import HomePage from './pages/HomePage';
 import GeneratePdfPage from './pages/GeneratePdfPage';
-import GeneratePdf from './components/formGenerate/GeneratePdf';
 import { BrowserRouter, Route,Routes } from 'react-router-dom'
+import GenerateExcelPage from './pages/GenerateExcelPage';
+
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/generatepdf' element={<GeneratePdfPage />} />
+        <Route path='/generatexcel' element={<GenerateExcelPage />} />
       </Routes>         
    </BrowserRouter> 
   )

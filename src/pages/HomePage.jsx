@@ -21,7 +21,7 @@ function HomePage() {
             <div className="containe text-center flex flex-col justify-center items-center">
                 <h2 className="text-xl mb-5">Generador De Reporte</h2>
                 <div className="container bg-white shadow-md w-3/4  rounded-full h-auto flex justify-center items-center overflow-hidden">
-                   <Link to="/generatepdf" ><img src={logoexcel} alt="" className="w-auto" /></Link> 
+                   <Link to="/generatexcel" ><img src={logoexcel} alt="" className="w-auto" /></Link> 
                 </div>    
             </div>
             {/* <div className="container">
