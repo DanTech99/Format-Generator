@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Form() {
+function Form({handleSubmit, name, setName, email, setEmail}) {
   return (
     <form onSubmit={handleSubmit}>
       <label>
