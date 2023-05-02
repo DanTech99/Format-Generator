@@ -81,7 +81,7 @@ export default function GeneratePdf() {
 
     if (name === 'fechaInit') {
       setCampoLleno(true); // Marcar el campo como lleno cuando se introduce un valor
-    }
+   }
 
   }
     
@@ -209,7 +209,7 @@ export default function GeneratePdf() {
    */
   const handleSubmit = async (e) => {
     e.preventDefault()
-     const response = await fetch('https://server-generate-app.fly.dev/generatecontrolpdf', {
+     const response = await fetch('https://server-generate-pdf-production.up.railway.app/generatecontrolpdf', {
        method: 'POST',
        headers: {'Content-Type': 'application/json'},
        body: JSON.stringify(data)
