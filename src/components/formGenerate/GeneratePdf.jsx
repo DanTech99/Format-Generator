@@ -209,7 +209,7 @@ export default function GeneratePdf() {
    */
   const handleSubmit = async (e) => {
     e.preventDefault()
-     const response = await fetch('https://server-generate-pdf-production.up.railway.app/generatehistoryclinic', {
+     const response = await fetch('https://server-generate-pdf-production.up.railway.app/api/generatecontrolpdf', {
        method: 'POST',
        headers: {'Content-Type': 'application/json'},
        body: JSON.stringify(data)
