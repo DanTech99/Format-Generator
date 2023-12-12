@@ -220,7 +220,7 @@ export default function GeneratePdf() {
       const url =  window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'hoja-de-control.docx';
+      link.download = 'hoja-de-control.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link)
